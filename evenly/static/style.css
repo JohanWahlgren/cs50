@@ -1,0 +1,387 @@
+/* General Styles */
+html, body {
+    height: 100%;  /* Full height for body */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #002B5B; /* Deep Ocean Blue */
+    color: #F5F5DC; /* Cream White */
+    overflow-x: hidden;  /* Hide horizontal overflow */
+    overflow-y: auto;  /* Enable vertical scrolling */
+}
+
+/* Logo Styles */
+.logo {
+    font-size: 4rem;
+    font-weight: bold;
+    padding-top: 20px;  /* Less margin-top to give some space */
+    margin-bottom: 10px;
+}
+
+.group-logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 10px;  /* Space above */
+    margin-bottom: 10px;  /* Space below */
+    word-wrap: break-word;  /* Avoid long words breaking the layout */
+}
+
+.tagline {
+    font-size: 2.5rem;
+    opacity: 0.8;
+    margin-top: 20; /* Adjust margin to prevent overlap */
+    margin-bottom: 40px;
+}
+
+.group-time {
+    font-size: 1.0rem;
+    opacity: 0.8;
+    margin-top: 10; /* Adjust margin to prevent overlap */
+    margin-bottom: 40px;
+}
+
+.start-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Center text inside the container */
+}
+
+/* Button Styles */
+.btn-custom {
+    width: 180px;
+    font-size: 1.2rem;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+.btn-register-login {
+    background-color: #FFD700; /* Gold */
+    color: #002B5B;
+}
+/*
+.btn-register-login {
+    background-color: #F5F5DC;
+    color: #002B5B;
+}
+*/
+.btn-custom:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* Falling Coins Animation */
+.start-page .coin {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url('https://pngimg.com/d/coin_PNG36909.png'); /* Coin Icon */
+    background-size: cover;
+    animation: fall 3s linear infinite;
+}
+@keyframes fall {
+    from {
+        transform: translateY(-100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Custom Styles for Modal */
+.modal-content {
+    background-color: #002B5B;
+    color: #F5F5DC;
+}
+
+.modal-header {
+    border-bottom: 2px solid #FFD700;
+}
+
+.modal-footer {
+    background-color: #F5F5DC;
+}
+
+.btn-secondary {
+    background-color: #FFD700;
+    color: #002B5B;
+    border-radius: 10px;
+    border: none;
+}
+
+/* Custom styles for the Register Modal */
+.auth-modal .modal-content {
+    background-color: #002B5B; /* Deep Ocean Blue */
+    color: #F5F5DC; /* Cream White */
+}
+
+.auth-modal .modal-header .modal-title {
+    color: #FFD700; /* Gold */
+}
+
+.auth-modal .form-control {
+    background-color: #F5F5DC; /* Light background for input fields */
+    color: #002B5B;
+}
+
+.auth-modal .btn-primary {
+    background-color: #FFD700; /* Gold */
+    color: #002B5B;
+}
+
+/* Fixed Header */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Adjust if needed */
+    border-top: 4px solid #FFD700; /* Gold border */
+    border-bottom: 4px solid #FFD700; /* Gold border */
+    padding: 15px 30px;
+    text-align: center;
+    background-color: #002B5B;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Fixed Footer */
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Adjust height if necessary */
+    border-top: 4px solid #FFD700; /* Gold border */
+    border-bottom: 4px solid #FFD700; /* Gold border */
+    padding: 15px 30px;
+    text-align: center;
+    background-color: #002B5B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    margin-top: auto; /* Ensure it stays at the bottom */
+}
+
+/* Ensure Header and Footer Text Align Properly */
+.site-header a, .site-footer a {
+    color: #F5F5DC; /* Cream White */
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Main content area should take up remaining space */
+main {
+    flex-grow: 1;
+    padding-top: 80px;  /* Space below the fixed header */
+    padding-bottom: 80px; /* Space above the fixed footer */
+    text-align: center;
+}
+
+/* Flexbox for Spacing Evenly */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adds spacing between buttons */
+    margin-top: 20px;
+}
+
+/* Expenses Container */
+.expenses-container {
+    background-color: #F5F5DC; /* Cream White (matches the site theme) */
+    border-radius: 10px;
+    padding: 15px;
+    width: 60%; /* Adjust width as necessary */
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Scrollable Expenses List */
+.expenses-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #FFD700; /* Gold border */
+    border-radius: 8px;
+}
+
+/* Individual Expense Items */
+.expense-item {
+    background-color: #002B5B; /* Deep Ocean Blue */
+    color: #F5F5DC; /* Cream White */
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    padding-top: 80px; /* Space for fixed header */
+    padding-bottom: 80px; /* Space for fixed footer */
+    text-align: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+
+/* Scrollable Wrapper inside the Main Content - Now it won't scroll independently */
+.scroll-wrapper {
+    padding-right: 10px;  /* Slight padding for the scrollbar */
+    margin-right: -10px;  /* Compensates for the width of the scrollbar */
+    /* Removed overflow-y: auto and max-height */
+}
+
+/* Optional: Custom Scrollbar Styles for the Wrapper */
+.scroll-wrapper::-webkit-scrollbar {
+    width: 10px;  /* Adjust width of the scrollbar */
+}
+
+.scroll-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #FFD700; /* Gold scrollbar */
+    border-radius: 5px;
+}
+
+.total-spent-wrapper {
+    display: flex;
+    flex-direction: column;  /* Stack the heading and button vertically */
+    align-items: center;     /* Center them horizontally */
+    margin-top: 20px;        /* Adjust space between the content above */
+}
+
+.expense-item {
+    cursor: pointer; /* Changes the mouse cursor to a pointer (hand icon) */
+    padding: 10px; /* Optional: Adds some padding for better spacing */
+    border-bottom: 1px solid #ddd; /* Optional: Adds a separator between items */
+}
+
+/* Help Page Styles */
+.help-section {
+    background-color: #F5F5DC; /* Light background for sections */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px; /* Space between sections */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Style for Help Page */
+.help-section h2 {
+    font-size: 2rem;
+    color: #002B5B; /* Deep Ocean Blue */
+    margin-bottom: 10px;
+}
+
+/* Text Styling inside Help Page */
+.help-section p {
+    font-size: 1.2rem;
+    color: #000000;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Link Styling */
+.help-section a {
+    color: #FFD700; /* Gold */
+    text-decoration: none;
+}
+
+.help-section a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Styles */
+.main-content-help {
+    padding: 20px;
+    text-align: left; /* Align text to the left for better readability */
+    box-sizing: border-box;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Header Styling */
+.start-header {
+    font-size: 3rem;
+    color: #FFD700; /* Gold for the main title */
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Debt Scoreboard Styles */
+.scoreboard {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #F5F5DC;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+/* Individual debt item styling */
+.scoreboard p {
+    display: inline-block;
+    margin-right: 10px;
+    color: #002B5B;
+}
+
+/* Settle button styling */
+.btn-settle {
+    background-color: #FFD700;  /* Gold, matching your theme */
+    color: #002B5B;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-settle:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Container for each debt entry */
+.scoreboard > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #002B5B;
+}
+
+.scoreboard > div:last-child {
+    border-bottom: none;
+}
+
+/* Paid text styling */
+.scoreboard span {
+    color: #002B5B;  /* Same dark blue as the text */
+}
+
+/* Custom Flash Message Styling */
+.custom-flash {
+    background-color: #F5F5DC; /* White/Cream */
+    color: #002B5B; /* Deep Blue */
+    border: 2px solid #002B5B; /* Blue Border */
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+

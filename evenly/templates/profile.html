@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+    <h1 class="text-light">Finished Groups</h1>
+
+
+    {% if groups %}
+        <div class="expenses-container">
+            <div class="expenses-list">
+                {% for group in groups %}
+                    <div class="expense-item">
+                        <a href="{{ url_for('finished_group', group_id=group.group_id) }}" class="text-light text-decoration-none fs-5">
+                            {{ group.name }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>You are not part of any finished groups.</p>
+    {% endif %}
+
+    <!-- Change Password Modal -->
+    <div class="modal fade auth-modal" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Change Password Form -->
+                    <form method="POST" action="/change-password">
+                        <div class="mb-3">
+                            <label for="current_password" class="form-label">Current Password</label>
+                            <input type="password" class="form-control" id="current_password" name="current_password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="new_password" class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="new_password" name="new_password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="repeated_new_password" class="form-label">Repeat New Password</label>
+                            <input type="password" class="form-control" id="repeated_new_password" name="repeated_new_password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- Password requirements text -->
+                    <small class="text-muted">New password must be minimum 7 characters, contain at least one capital letter, one number, and one special character.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <form action="{{ url_for('logout') }}" method="post">
+            <button type="submit" class="btn btn-custom btn-register-login">Log Out</button>
+        </form>
+        <button type="button" class="btn btn-custom btn-register-login" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+            Change Password
+        </button>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+10 HTML Tags:
+1. <a>
+2. <h1>
+3. <h2>
+4. <h3>
+5. <p>
+6. <img>
+7. <div>
+8. <button>
+9. <textarea>
+10. <footer>
+
+CSS selectors:
+1. .container
+2. .card-custom
+3. .hello-mate
+4. h2
+5. .btn-primary
+
+CSS properties:
+1. font-family
+2. max-width
+3. margin-bottom
+4. object-fit
+5. margin-left
+
+JavaScript:
+- JavaScript functions are used for interactive buttons to change background color, toggle the visibility of text fields, and clear the feedback form.
+Bootstrap:
+- Used Bootstrap for buttons, cards, and responsive layout classes to ensure the site looks nice on mobile devices, laptops, and desktops.

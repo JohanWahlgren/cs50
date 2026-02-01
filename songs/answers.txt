@@ -1,0 +1,7 @@
+To find the audio aura of the songs.db batch I need to find the average energy, valence and danceability of the 100 songs.
+That I can do by this query: SELECT AVG(energy), AVG(valence), AVG(danceability) FROM songs;
+When rounded this query produced the output that avg energy = 0.66, avg valence = 0.48, avg danceability = 0.72.
+Those three values make up the audio aura.
+
+A better way of seeing the audio aura might be to include artists and maybe also include a genre. Songs that have the same energy, valence and danceability
+might have the same tempo, loudness etc but be of very different genres, for example an acoustic rock song and a techno/house might score similar.

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <link href="styles.css" rel="stylesheet">
+    <title>Alligator</title>
+    <script>
+        function toggleTextField() {
+            const textField = document.getElementById('infoTextField');
+            textField.classList.toggle('d-none');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mb-4">Alligator</h2>
+        <img src="https://cdn.britannica.com/54/194854-050-AD863215/Alligator-Florida.jpg" class="img-fluid img-fixed-size" alt="Alligator">
+        <p>Alligators are large reptiles found in freshwater environments like swamps, marshes, and rivers, primarily in the southeastern United States and China.
+            They belong to the family Alligatoridae and can grow up to 13 to 15 feet in length, though most are smaller. Alligators are carnivorous and have powerful jaws that can exert tremendous pressure,
+            making them formidable hunters. They play a crucial role in their ecosystems by helping to maintain the balance of prey populations and creating habitats for other species through their nesting activities.
+            Alligators are also known for their unique reproductive behavior; females build nests from vegetation and lay eggs, which they guard fiercely.</p>
+
+            <h3 class="hello-mate">Did you know?</h3>
+
+            <button class="btn btn-secondary mb-3" onclick="toggleTextField()">I want to find out!</button>
+
+            <div id="infoTextField" class="d-none mb-3">
+                <p>Alligators have been around for over 150 million years, which means they share the Earth with dinosaurs and still have the coolest style in the swamp!</p>
+            </div>
+
+            <div class="mb-5">
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+            </div>
+    </div>
+</body>
+</html>

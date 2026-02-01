@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            function check_answer_MPC(button) {
+
+                const correct_answer_MPC = "Zlatan Ibrahimovic";
+
+                const existing_feedback = document.querySelector('.feedback');
+                if(existing_feedback) {
+                    existing_feedback.remove();
+                }
+
+                feedback = document.createElement('div');
+                feedback.className = 'feedback';
+
+                if(button.textContent == correct_answer_MPC) {
+                    button.style.backgroundColor = "Green";
+                    feedback.textContent = "Correct!";
+
+                } else {
+                    button.style.backgroundColor = "Red";
+                    feedback.textContent = "Incorrect:("
+                }
+
+                feedback.style.display = "block";
+                button.parentElement.appendChild(feedback);
+            }
+
+            function check_answer_SNC(button) {
+
+                const correct_answer_SNC = "29";
+
+                const input = button.previousElementSibling;
+                if (!input || input.tagName !== 'INPUT') {
+                   console.error("Input field not found");
+                   return;
+                }
+
+                const existing_feedback = document.querySelector('.feedback');
+                if(existing_feedback) {
+                   existing_feedback.remove();
+                }
+
+                feedback = document.createElement('div');
+                feedback.className = 'feedback';
+
+                if(input.value.trim() == correct_answer_SNC) {
+                    input.style.backgroundColor = "Green";
+                    feedback.textContent = "Correct!";
+                } else {
+                    input.style.backgroundColor = "Red";
+                    feedback.textContent = "Incorrect:(";
+                }
+
+                feedback.style.display = "block";
+                button.parentElement.appendChild(feedback);
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>Who is swedens best footballer of all time? </h3>
+                   <button onclick="check_answer_MPC(this)">Zinedine Zidane</button>
+                   <button onclick="check_answer_MPC(this)">Zlatan Ibrahimovic</button>
+                   <button onclick="check_answer_MPC(this)">Diego Armando Maradona</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>As of july 2024, what is swedens fifa world ranking? Please answer in numerics</h3>
+                   <input type="text" placeholder="Example: 1">
+                   <button onclick="check_answer_SNC(this)">Answer</button>
+            </div>
+        </div>
+    </body>
+</html>

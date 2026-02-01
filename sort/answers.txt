@@ -1,0 +1,11 @@
+sort1 uses: Bubble sort
+
+How do you know?: It was very fast on the sorted text files where it did not have to move anything.
+
+sort2 uses: Merge sort
+
+How do you know?: Becuase it is the fastest out of the three sort algorithms. If you test all of the sort algoriths on the random text files this one is clearly the best.
+
+sort3 uses: Selection sort
+
+How do you know?: Compared to sort1 this sort algorithm took a loong time even on the sorted ones.

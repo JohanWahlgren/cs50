@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block title %}Active Group{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1 class="group-logo">{{ group_name if group_name else 'No Group Found' }}</h1>
+    <p class="group-time">
+        Code: {{ group_code if group_code else 'Unknown Code' }}
+        &nbsp; | &nbsp; Created on: {{ created_at if created_at else 'Unknown Date' }}
+    </p>
+
+
+    <div class="total-spent-wrapper">
+        <h2>Total Spent</h2>
+        <p class="btn-custom btn-register-login">{{ total_spent if total_spent else '0' }}</p>
+    </div>
+
+    <h2>Expenses</h2>
+    {% if expenses %}
+        <div class="expenses-container">
+            <div class="expenses-list">
+                {% for expense in expenses %}
+                <div class="expense-item" data-expense-id="{{ expense['payment_id'] }}">
+                    <p>{{ expense["username"] }} bought {{ expense["description"] }} for {{ expense["amount"] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>No expenses yet.</p>
+    {% endif %}
+
+    <h2>Debt Scoreboard</h2>
+    {% if debts %}
+        <div class="scoreboard">
+            {% for debt in debts %}
+                <div>
+                    <p>{{ debt["from_username"] }} owes {{ debt["to_username"] }} {{ debt["amount"] }}</p>
+                    {% if debt.status == "unpaid" %}
+                        <form action="{{ url_for('settle_debt', settlement_id=debt['settlement_id']) }}" method="post" style="display: inline;">
+                            <button type="submit" class="btn btn-settle">
+                                Settle
+                            </button>
+                        </form>
+                    {% else %}
+                        <span>Paid</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No debts recorded.</p>
+    {% endif %}
+</div>
+
+<!-- Expense detail Modal -->
+<div class="modal fade auth-modal" id="expenseDetailModal" tabindex="-1" aria-labelledby="expenseDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="expenseDetailModalLabel">Expense Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Description:</strong> <span id="expense-description"></span></p>
+                <p><strong>Amount:</strong> <span id="expense-amount"></span></p>
+                <p><strong>Paid by:</strong> <span id="expense-paid-by"></span></p>
+                <p><strong>Date:</strong> <span id="expense-date"></span></p>
+
+                <h6>Split Details:</h6>
+                <ul id="split-details"></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Expense Modal -->
+<div class="modal fade auth-modal" id="addExpenseModal" tabindex="-1" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExpenseModalLabel">Add Expense</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add Expense Form -->
+                <form method="POST" action="/add-expense">
+                    <input type="hidden" name="group_id" value="{{ group_id }}">
+
+                    <div class="mb-3">
+                        <label for="expense-description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="expense-description" name="description" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="expense-amount" class="form-label">Amount</label>
+                        <input type="number" step="0.01" class="form-control" id="expense-amount" name="amount" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="paid-by" class="form-label">Paid By</label>
+                        <select class="form-control" id="paid-by" name="paid_by" required>
+                            {% for member in group_members %}
+                                <option value="{{ member['user_id'] }}">{{ member['username'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Split Between</label>
+                        <div class="form-check">
+                            <input type="checkbox" id="select-all" class="form-check-input">
+                            <label for="select-all" class="form-check-label">Select All</label>
+                        </div>
+                        {% for member in group_members %}
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="split_with" value="{{ member['user_id'] }}" id="member-{{ member['user_id'] }}">
+                                <label class="form-check-label" for="member-{{ member['user_id'] }}">{{ member['username'] }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Expense</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-custom btn-register-login" data-bs-toggle="modal" data-bs-target="#addExpenseModal">
+    Add Expense
+</button>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+    <h1 class="text-light">My Groups</h1>
+
+    <!--<div class="group-list">
+        {% if groups %}
+            <ul class="list-unstyled">
+                {% for group in groups %}
+                    <li>
+                        <a href="{{ url_for('active_group', group_id=group.group_id) }}" class="text-light text-decoration-none fs-5">
+                            {{ group.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-light">You are not part of any active groups.</p>
+        {% endif %}
+    </div> -->
+
+    {% if groups %}
+        <div class="expenses-container">
+            <div class="expenses-list">
+                {% for group in groups %}
+                    <div class="expense-item">
+                        <a href="{{ url_for('active_group', group_id=group.group_id) }}" class="text-light text-decoration-none fs-5">
+                            {{ group.name }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>You are not part of any active groups.</p>
+    {% endif %}
+
+    <!-- Create Group Modal -->
+    <div class="modal fade auth-modal" id="createGroupModal" tabindex="-1" aria-labelledby="createGroupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createGroupModalLabel">Create Group</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Create Group Form -->
+                    <form method="POST" action="/create-group">
+                        <div class="mb-3">
+                            <label for="group-name" class="form-label">Group Name</label>
+                            <input type="text" class="form-control" id="group_name" name="group_name" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Group Modal -->
+    <div class="modal fade auth-modal" id="joinGroupModal" tabindex="-1" aria-labelledby="joinGroupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="joinGroupModalLabel">Join Group</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Join Group Form -->
+                    <form method="POST" action="/join-group">
+                        <div class="mb-3">
+                            <label for="group-pin" class="form-label">Group PIN</label>
+                            <input type="text" class="form-control" id="group_pin" name="group_pin" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Join</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buttons for Creating and Joining a Group -->
+    <div class="button-container">
+        <button type="button" class="btn btn-custom btn-register-login" data-bs-toggle="modal" data-bs-target="#createGroupModal">
+            Create Group
+        </button>
+        <button type="button" class="btn btn-custom btn-register-login" data-bs-toggle="modal" data-bs-target="#joinGroupModal">
+            Join Group
+        </button>
+    </div>
+{% endblock %}

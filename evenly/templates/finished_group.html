@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}Finished Group{% endblock %}
+
+{% block main %}
+<div class="container">
+    <h1 class="group-logo">{{ group_name if group_name else 'No Group Found' }}</h1>
+    <p class="group-time">
+        Created on: {{ created_at if created_at else 'Unknown Date' }}
+    </p>
+
+    <div class="total-spent-wrapper">
+        <h2>Total Spent</h2>
+        <p class="btn-custom btn-register-login">{{ total_spent if total_spent else '0' }}</p>
+    </div>
+
+    <h2>Expenses</h2>
+    {% if expenses %}
+        <div class="expenses-container">
+            <div class="expenses-list">
+                {% for expense in expenses %}
+                <div class="expense-item" data-expense-id="{{ expense['payment_id'] }}">
+                    <p>{{ expense["username"] }} bought {{ expense["description"] }} for {{ expense["amount"] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>No expenses recorded.</p>
+    {% endif %}
+
+    <h2>Final Settlements</h2>
+    {% if debts %}
+        <div class="scoreboard">
+            {% for debt in debts %}
+                <div>
+                    <p>{{ debt["from_username"] }} paid {{ debt["to_username"] }} {{ debt["amount"] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No settlements recorded.</p>
+    {% endif %}
+</div>
+
+<!-- Expense detail Modal -->
+<div class="modal fade auth-modal" id="expenseDetailModal" tabindex="-1" aria-labelledby="expenseDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="expenseDetailModalLabel">Expense Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Description:</strong> <span id="expense-description"></span></p>
+                <p><strong>Amount:</strong> <span id="expense-amount"></span></p>
+                <p><strong>Paid by:</strong> <span id="expense-paid-by"></span></p>
+                <p><strong>Date:</strong> <span id="expense-date"></span></p>
+
+                <h6>Split Details:</h6>
+                <ul id="split-details"></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
